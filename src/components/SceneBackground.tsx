@@ -15,8 +15,8 @@ export default function SceneBackground() {
       <div className="absolute left-1/2 top-[-6%] -translate-x-1/2 sm:top-[-8%]">
         <div className="h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(247,169,72,0.28)_0%,rgba(247,169,72,0.10)_45%,transparent_70%)] sm:h-[34rem] sm:w-[34rem]" />
       </div>
-      <div className="sun-glow absolute left-1/2 top-[3%] -translate-x-1/2 sm:top-[4%]">
-        <div className="h-16 w-16 rounded-full bg-[radial-gradient(circle_at_50%_45%,#ffd27a_0%,#f7a948_50%,#f2901c_80%)] opacity-90 sm:h-24 sm:w-24" />
+      <div className="sun-glow absolute left-1/2 top-[8%] -translate-x-1/2 sm:top-[5%]">
+        <div className="h-14 w-14 rounded-full bg-[radial-gradient(circle_at_50%_45%,#ffd27a_0%,#f7a948_50%,#f2901c_80%)] opacity-90 sm:h-24 sm:w-24" />
       </div>
 
       {/* Birds */}

@@ -24,36 +24,11 @@ function Page() {
       {/* ---------- Top bar ---------- */}
       <header className="relative z-20 flex items-center justify-between px-5 pt-5 sm:px-10 sm:pt-7">
         <BrandMark />
-        <div className="flex gap-1 rounded-full border border-navy/10 bg-cream/60 p-1 backdrop-blur-md">
-          {LANGS.map((l) => (
-            <button
-              key={l.code}
-              onClick={() => setLang(l.code)}
-              aria-label={l.label}
-              className={`min-w-9 rounded-full px-3 py-1 text-sm font-semibold transition-colors ${
-                lang === l.code
-                  ? "bg-sun text-white shadow"
-                  : "text-navy/70 hover:text-navy"
-              }`}
-            >
-              {l.label}
-            </button>
-          ))}
-        </div>
+        <LangToggle lang={lang} setLang={setLang} />
       </header>
 
       {/* ---------- Hero ---------- */}
-      <section className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <motion.span
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-navy backdrop-blur-md"
-        >
-          <span className="h-2 w-2 animate-pulse rounded-full bg-sun" />
-          {t.badge}
-        </motion.span>
-
+      <section className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-10 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
@@ -92,18 +67,32 @@ function Page() {
 
         <TeaserRotator items={t.teasers} />
 
+        {/* Status line — replaces the old top badge, kept visible near the CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-10 inline-flex items-center gap-2.5 rounded-full border border-navy/15 bg-white/70 px-5 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-navy backdrop-blur-md"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sun opacity-60" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-sun" />
+          </span>
+          {t.notify}
+        </motion.div>
+
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.85 }}
-          className="mt-9 flex flex-col items-center gap-3 sm:flex-row"
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="mt-5 flex flex-col items-center gap-3 sm:flex-row"
         >
           <a
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-sun px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-sun/30 transition-transform hover:scale-[1.04] sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#25d366] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#25d366]/30 ring-1 ring-white/30 transition-transform hover:scale-[1.04] sm:w-auto"
           >
             <WhatsAppIcon />
             {t.whatsapp}
@@ -112,7 +101,7 @@ function Page() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full border-2 border-navy/20 bg-white/70 px-7 py-3.5 text-base font-semibold text-navy backdrop-blur-md transition-transform hover:scale-[1.04] sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[linear-gradient(95deg,#feda75_0%,#fa7e1e_28%,#d62976_60%,#962fbf_85%,#4f5bd5_100%)] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#d62976]/30 ring-1 ring-white/30 transition-transform hover:scale-[1.04] sm:w-auto"
           >
             <InstagramIcon />
             {t.follow}
@@ -134,16 +123,47 @@ function Page() {
 /* ---------- Brand mark (sun + waves + wordmark) ---------- */
 function BrandMark() {
   return (
-    <div className="flex items-center gap-2.5">
-      <svg width="40" height="40" viewBox="0 0 64 64" fill="none" aria-hidden>
+    <div className="flex items-center gap-2 sm:gap-2.5">
+      <svg
+        viewBox="0 0 64 64"
+        fill="none"
+        aria-hidden
+        className="h-8 w-8 shrink-0 sm:h-10 sm:w-10"
+      >
         <circle cx="40" cy="26" r="13" fill="#f2901c" />
         <path d="M6 40 Q18 30 30 40 T58 40" stroke="#16294f" strokeWidth="4" fill="none" strokeLinecap="round" />
         <path d="M8 49 Q20 40 32 49 T58 49" stroke="#46b4dd" strokeWidth="4" fill="none" strokeLinecap="round" />
       </svg>
-      <span className="font-[family-name:var(--font-script)] text-2xl leading-none text-navy sm:text-3xl">
+      <span className="font-[family-name:var(--font-script)] text-xl leading-none text-navy sm:text-3xl">
         Jouider&nbsp;Bay
       </span>
     </div>
+  );
+}
+
+/* ---------- Single-button language toggle (cycles FR ⇄ EN) ---------- */
+function LangToggle({
+  lang,
+  setLang,
+}: {
+  lang: (typeof LANGS)[number]["code"];
+  setLang: (l: (typeof LANGS)[number]["code"]) => void;
+}) {
+  const current = LANGS.find((l) => l.code === lang) ?? LANGS[0];
+  const next = LANGS[(LANGS.findIndex((l) => l.code === lang) + 1) % LANGS.length];
+
+  return (
+    <button
+      onClick={() => setLang(next.code)}
+      aria-label={`Switch language to ${next.label}`}
+      className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white/70 px-3.5 py-1.5 text-sm font-semibold text-navy shadow-sm backdrop-blur-md transition-colors hover:bg-white"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
+        <path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18" stroke="currentColor" strokeWidth="1.6" />
+      </svg>
+      {current.label}
+    </button>
   );
 }
 

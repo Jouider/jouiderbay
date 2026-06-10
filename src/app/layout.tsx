@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Montserrat, Great_Vibes, Tajawal } from "next/font/google";
+import { Playfair_Display, Montserrat, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
 const display = Playfair_Display({
@@ -18,13 +18,6 @@ const script = Great_Vibes({
   variable: "--font-script",
   weight: "400",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const arabic = Tajawal({
-  variable: "--font-arabic",
-  weight: ["400", "500", "700"],
-  subsets: ["arabic"],
   display: "swap",
 });
 
@@ -58,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${display.variable} ${sans.variable} ${script.variable} ${arabic.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} ${script.variable} h-full antialiased`}
     >
       <body className="min-h-full">{children}</body>
     </html>

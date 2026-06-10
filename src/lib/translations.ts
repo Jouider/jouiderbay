@@ -1,9 +1,8 @@
-export type Lang = "fr" | "en" | "ar";
+export type Lang = "fr" | "en";
 
 export const LANGS: { code: Lang; label: string }[] = [
   { code: "fr", label: "FR" },
   { code: "en", label: "EN" },
-  { code: "ar", label: "ع" },
 ];
 
 type Dict = {
@@ -51,21 +50,6 @@ export const translations: Record<Lang, Dict> = {
     follow: "Follow us",
     whatsapp: "Contact us",
     footer: "Book directly — no middleman.",
-  },
-  ar: {
-    dir: "rtl",
-    badge: "قريباً",
-    comingSoon: "الموقع قيد الإنشاء",
-    brand: "Jouider Bay",
-    location: "سيدي رحال · المغرب",
-    tagline: "على ضفاف البحر، مع لمسة من الفخامة.",
-    intro:
-      "شقة استثنائية على شاطئ البحر — مسبح وخضرة وشاطئ على بُعد خطوات. الحجز المباشر قريباً جداً.",
-    teasers: ["على حافة الماء", "مسبح خاص", "الشاطئ على بُعد خطوات", "خضرة وهدوء", "غروب ذهبي"],
-    notify: "الإطلاق قريباً",
-    follow: "تابعنا",
-    whatsapp: "تواصل معنا",
-    footer: "احجز مباشرة — دون وسيط.",
   },
 };
 
