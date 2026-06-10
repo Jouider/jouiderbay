@@ -1,36 +1,32 @@
 "use client";
 
 /**
- * Full-bleed animated beach scene built behind the content.
- * Layers (back -> front): sky gradient, glowing sun, drifting clouds,
- * flying birds, layered scrolling sea waves, floating light particles.
- * Pure CSS animation so it stays light on mobile.
+ * Light, airy beach scene. The page is mostly WHITE/cream so navy content
+ * stays perfectly readable; the sun sits softly at the top and the colored
+ * sea waves live at the very bottom as a decorative band.
  */
 export default function SceneBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      {/* Sky: warm sand at top fading to lagoon near the sea */}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#fdf6e9_0%,#fbe9cf_28%,#f7d9a6_46%,#7cc4dd_70%,#1e7ba8_100%)]" />
+      {/* Mostly white background with a faint warm sand wash */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#fffdf8_42%,#fdf4e6_72%,#f7ecd8_100%)]" />
 
-      {/* Sun */}
-      <div className="sun-glow absolute left-1/2 top-[8%] -translate-x-1/2 sm:top-[12%]">
-        <div className="h-24 w-24 rounded-full bg-[radial-gradient(circle_at_50%_45%,#ffd27a_0%,#f7a948_45%,#f2901c_75%)] sm:h-40 sm:w-40" />
+      {/* Soft sun halo, top — subtle so it never fights the text */}
+      <div className="absolute left-1/2 top-[-6%] -translate-x-1/2 sm:top-[-8%]">
+        <div className="h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(247,169,72,0.28)_0%,rgba(247,169,72,0.10)_45%,transparent_70%)] sm:h-[34rem] sm:w-[34rem]" />
       </div>
-
-      {/* soft sun halo */}
-      <div className="absolute left-1/2 top-[8%] -translate-x-1/2 sm:top-[12%]">
-        <div className="h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(247,169,72,0.32)_0%,transparent_65%)] sm:h-[26rem] sm:w-[26rem]" />
+      <div className="sun-glow absolute left-1/2 top-[3%] -translate-x-1/2 sm:top-[4%]">
+        <div className="h-16 w-16 rounded-full bg-[radial-gradient(circle_at_50%_45%,#ffd27a_0%,#f7a948_50%,#f2901c_80%)] opacity-90 sm:h-24 sm:w-24" />
       </div>
 
       {/* Birds */}
       {[
-        { top: "16%", delay: "0s", dur: "26s", scale: 1 },
-        { top: "22%", delay: "6s", dur: "32s", scale: 0.8 },
-        { top: "12%", delay: "13s", dur: "29s", scale: 0.65 },
+        { top: "10%", delay: "0s", dur: "30s", scale: 0.9 },
+        { top: "16%", delay: "9s", dur: "34s", scale: 0.65 },
       ].map((b, i) => (
         <svg
           key={i}
-          className="absolute left-0 text-navy/70"
+          className="absolute left-0 text-navy/40"
           style={{
             top: b.top,
             animation: `fly ${b.dur} linear ${b.delay} infinite`,
@@ -46,36 +42,27 @@ export default function SceneBackground() {
         </svg>
       ))}
 
-      {/* Clouds */}
-      <div
-        className="absolute left-[10%] top-[30%] h-10 w-32 rounded-full bg-white/55 blur-md"
-        style={{ animation: "drift 18s ease-in-out infinite" }}
-      />
-      <div
-        className="absolute right-[12%] top-[24%] h-8 w-24 rounded-full bg-white/45 blur-md"
-        style={{ animation: "drift 24s ease-in-out 3s infinite" }}
-      />
-
-      {/* Sea waves — three layered scrolling bands */}
-      <div className="absolute inset-x-0 bottom-0 h-[42%]">
-        <WaveBand color="#46b4dd" opacity={0.55} height={140} dur="14s" bottom={60} />
-        <WaveBand color="#1e7ba8" opacity={0.8} height={150} dur="11s" bottom={26} />
-        <WaveBand color="#16294f" opacity={0.95} height={160} dur="8s" bottom={-6} />
+      {/* Sea waves — decorative band pinned to the very bottom */}
+      <div className="absolute inset-x-0 bottom-0 h-[34%] sm:h-[30%]">
+        <WaveBand color="#cdeaf6" opacity={0.9} height={150} dur="16s" bottom={92} />
+        <WaveBand color="#46b4dd" opacity={0.85} height={150} dur="13s" bottom={56} />
+        <WaveBand color="#1e7ba8" opacity={0.92} height={155} dur="10s" bottom={24} />
+        <WaveBand color="#16294f" opacity={1} height={160} dur="8s" bottom={-8} />
       </div>
 
-      {/* Floating light particles */}
-      {Array.from({ length: 14 }).map((_, i) => {
-        const left = (i * 67) % 100;
-        const size = 3 + ((i * 7) % 6);
-        const dur = 6 + ((i * 5) % 9);
-        const delay = (i % 7) * 1.3;
+      {/* A few floating light particles over the sea */}
+      {Array.from({ length: 8 }).map((_, i) => {
+        const left = (i * 71) % 100;
+        const size = 3 + ((i * 7) % 5);
+        const dur = 6 + ((i * 5) % 8);
+        const delay = (i % 6) * 1.2;
         return (
           <span
             key={i}
             className="absolute rounded-full bg-white/70"
             style={{
               left: `${left}%`,
-              bottom: `${8 + ((i * 13) % 40)}%`,
+              bottom: `${4 + ((i * 11) % 22)}%`,
               width: size,
               height: size,
               animation: `float ${dur}s ease-in-out ${delay}s infinite`,
@@ -101,10 +88,7 @@ function WaveBand({
   bottom: number;
 }) {
   return (
-    <div
-      className="absolute inset-x-0"
-      style={{ bottom, height, opacity }}
-    >
+    <div className="absolute inset-x-0" style={{ bottom, height, opacity }}>
       <svg
         className="h-full w-[200%]"
         viewBox="0 0 2880 160"

@@ -48,7 +48,7 @@ function Page() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="mb-5 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-cream"
+          className="mb-5 inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-navy backdrop-blur-md"
         >
           <span className="h-2 w-2 animate-pulse rounded-full bg-sun" />
           {t.badge}
@@ -58,7 +58,7 @@ function Page() {
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="font-[family-name:var(--font-script)] text-6xl leading-none text-cream drop-shadow-[0_4px_20px_rgba(13,27,56,0.45)] sm:text-8xl"
+          className="font-[family-name:var(--font-script)] text-6xl leading-none text-navy sm:text-8xl"
         >
           {t.brand}
         </motion.h1>
@@ -67,7 +67,7 @@ function Page() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.35 }}
-          className="mt-3 text-sm font-semibold uppercase tracking-[0.35em] text-shimmer"
+          className="mt-3 text-sm font-semibold uppercase tracking-[0.35em] text-sun"
         >
           {t.location}
         </motion.p>
@@ -76,7 +76,7 @@ function Page() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-6 max-w-2xl font-[family-name:var(--font-display)] text-2xl font-medium text-cream sm:text-4xl"
+          className="mt-6 max-w-2xl font-[family-name:var(--font-display)] text-2xl font-medium text-navy sm:text-4xl"
         >
           {t.tagline}
         </motion.h2>
@@ -85,7 +85,7 @@ function Page() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.65 }}
-          className="mt-4 max-w-xl text-base leading-relaxed text-cream/90 sm:text-lg"
+          className="mt-4 max-w-xl text-base leading-relaxed text-navy/70 sm:text-lg"
         >
           {t.intro}
         </motion.p>
@@ -112,7 +112,7 @@ function Page() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full glass px-7 py-3.5 text-base font-semibold text-cream transition-transform hover:scale-[1.04] sm:w-auto"
+            className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full border-2 border-navy/20 bg-white/70 px-7 py-3.5 text-base font-semibold text-navy backdrop-blur-md transition-transform hover:scale-[1.04] sm:w-auto"
           >
             <InstagramIcon />
             {t.follow}
@@ -121,7 +121,7 @@ function Page() {
       </section>
 
       {/* ---------- Footer ---------- */}
-      <footer className="relative z-10 px-6 pb-6 text-center text-xs tracking-wide text-cream/80">
+      <footer className="relative z-10 px-6 pb-6 text-center text-xs tracking-wide text-white/85">
         <p className="font-[family-name:var(--font-display)] italic">{t.footer}</p>
         <p className="mt-1">
           © {new Date().getFullYear()} Jouider Bay · jouiderbay.com
@@ -157,7 +157,7 @@ function TeaserRotator({ items }: { items: string[] }) {
 
   return (
     <div className="mt-8 flex h-9 items-center gap-3">
-      <span className="h-px w-8 bg-cream/50" />
+      <span className="h-px w-8 bg-navy/25" />
       <div className="relative flex h-9 min-w-[10rem] items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.span
@@ -166,13 +166,13 @@ function TeaserRotator({ items }: { items: string[] }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.4 }}
-            className="whitespace-nowrap font-[family-name:var(--font-display)] text-lg font-semibold text-sun-soft sm:text-xl"
+            className="whitespace-nowrap font-[family-name:var(--font-display)] text-lg font-semibold text-sun sm:text-xl"
           >
             {items[i]}
           </motion.span>
         </AnimatePresence>
       </div>
-      <span className="h-px w-8 bg-cream/50" />
+      <span className="h-px w-8 bg-navy/25" />
     </div>
   );
 }
