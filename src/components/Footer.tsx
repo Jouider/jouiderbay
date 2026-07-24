@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { INSTAGRAM_URL, WHATSAPP_NUMBER } from "@/lib/site-config";
-import { BrandIcon } from "./Navbar";
 import { useLang } from "./LanguageContext";
 
 export default function Footer() {
@@ -19,12 +19,15 @@ export default function Footer() {
 
       <div className="mx-auto max-w-6xl px-5 pb-10 pt-12 sm:px-8 sm:pt-16">
         <div className="flex flex-col items-center gap-8 text-center md:flex-row md:items-start md:justify-between md:text-left">
-          <div>
-            <div className="flex items-center justify-center gap-2.5 md:justify-start">
-              <BrandIcon className="h-9 w-9" />
-              <span className="font-[family-name:var(--font-script)] text-3xl">Jouider Bay</span>
-            </div>
-            <p className="mt-2 text-sm text-white/60">{t.footer.tagline}</p>
+          <div className="flex flex-col items-center md:items-start">
+            <Image
+              src="/logo-light.png"
+              alt="Jouider Bay"
+              width={150}
+              height={40}
+              className="h-11 w-auto"
+            />
+            <p className="mt-3 text-sm text-white/60">{t.footer.tagline}</p>
           </div>
 
           <div>

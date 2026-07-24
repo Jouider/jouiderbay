@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LANGS } from "@/lib/translations";
 import { useLang } from "./LanguageContext";
@@ -33,15 +34,28 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-20 sm:px-8">
-        <a href="#top" className="flex items-center gap-2" aria-label="Jouider Bay — accueil">
-          <BrandIcon className="h-8 w-8 sm:h-9 sm:w-9" />
-          <span
-            className={`font-[family-name:var(--font-script)] text-2xl leading-none sm:text-[1.7rem] ${
-              scrolled ? "text-navy" : "text-white drop-shadow-[0_1px_8px_rgba(8,28,53,0.6)]"
+        <a href="#top" className="relative flex items-center" aria-label="Jouider Bay — accueil">
+          <Image
+            src="/logo-light.png"
+            alt="Jouider Bay"
+            width={150}
+            height={40}
+            priority
+            className={`h-9 w-auto sm:h-10 transition-opacity duration-300 ${
+              scrolled ? "opacity-0" : "opacity-100"
             }`}
-          >
-            Jouider&nbsp;Bay
-          </span>
+          />
+          <Image
+            src="/logo-dark.png"
+            alt=""
+            aria-hidden
+            width={150}
+            height={40}
+            priority
+            className={`absolute left-0 top-1/2 h-9 w-auto -translate-y-1/2 transition-opacity duration-300 sm:h-10 ${
+              scrolled ? "opacity-100" : "opacity-0"
+            }`}
+          />
         </a>
 
         <div className="hidden items-center gap-7 md:flex">
