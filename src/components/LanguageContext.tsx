@@ -1,12 +1,12 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { translations, type Lang } from "@/lib/translations";
+import { translations, type Dict, type Lang } from "@/lib/translations";
 
 type Ctx = {
   lang: Lang;
   setLang: (l: Lang) => void;
-  t: (typeof translations)[Lang];
+  t: Dict;
 };
 
 const LanguageContext = createContext<Ctx | null>(null);
@@ -14,7 +14,7 @@ const LanguageContext = createContext<Ctx | null>(null);
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLang] = useState<Lang>("fr");
 
-  // restore preference + keep <html> lang/dir in sync
+  // restore preference + keep <html lang> in sync
   useEffect(() => {
     const saved = (typeof window !== "undefined" &&
       localStorage.getItem("jb-lang")) as Lang | null;
@@ -22,9 +22,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const dir = translations[lang].dir;
     document.documentElement.lang = lang;
-    document.documentElement.dir = dir;
     try {
       localStorage.setItem("jb-lang", lang);
     } catch {}
