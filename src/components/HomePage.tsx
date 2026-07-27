@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import Values from "./Values";
 import Rooms from "./Rooms";
+import Gallery from "./Gallery";
 import Residence from "./Residence";
 import Amenities from "./Amenities";
 import BookingSection from "./BookingSection";
@@ -21,6 +22,7 @@ export default function HomePage() {
         <Values />
         <Rooms />
         <Residence />
+        <Gallery />
         <Amenities />
         <BookingSection />
         <Location />

@@ -18,7 +18,9 @@ export type Dict = {
     sub: string;
     cta: string;
     scroll: string;
+    slides: string[];
   };
+  gallery: { kicker: string; title: string; cta: string };
   values: { name: string; desc: string }[];
   rooms: { kicker: string; title: string; intro: string; items: RoomText[] };
   residence: { kicker: string; title: string; intro: string; items: ResidenceText[] };
@@ -73,6 +75,12 @@ export const translations: Record<Lang, Dict> = {
       sub: "Appartement de standing les pieds dans l'eau — piscine, jardins et plage à votre porte.",
       cta: "Réserver vos dates",
       scroll: "Découvrir",
+      slides: ["Vue mer", "La terrasse", "La piscine", "Le salon", "La plage"],
+    },
+    gallery: {
+      kicker: "En images",
+      title: "Un avant-goût de votre séjour",
+      cta: "Voir l'appartement",
     },
     values: [
       { name: "Sérénité", desc: "Le calme du bord de mer" },
@@ -222,6 +230,12 @@ export const translations: Record<Lang, Dict> = {
       sub: "Premium apartment right on the water — pool, gardens and beach at your doorstep.",
       cta: "Book your dates",
       scroll: "Discover",
+      slides: ["Sea view", "The terrace", "The pool", "The living room", "The beach"],
+    },
+    gallery: {
+      kicker: "In pictures",
+      title: "A taste of your stay",
+      cta: "See the apartment",
     },
     values: [
       { name: "Serenity", desc: "The calm of the seaside" },

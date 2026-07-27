@@ -22,6 +22,12 @@ const GRADIENTS = {
 };
 
 const PHOTOS = [
+  // --- Hero carousel: put your 5 best wide shots here ---
+  ["hero-1", "VUE MER", "dusk"],
+  ["hero-2", "LA TERRASSE", "sunset"],
+  ["hero-3", "LA PISCINE", "lagoon"],
+  ["hero-4", "LE SALON", "ocean"],
+  ["hero-5", "LA PLAGE", "sand"],
   ["hero", "VUE MER / RÉSIDENCE", "dusk"],
   ["salon", "SALON", "ocean"],
   ["salle-a-manger", "SALLE À MANGER", "lagoon"],

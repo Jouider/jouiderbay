@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
+import { photo } from "@/lib/site-config";
 import SectionHeading from "./SectionHeading";
 import { useLang } from "./LanguageContext";
 
@@ -21,9 +23,19 @@ export default function Amenities() {
   const { t } = useLang();
 
   return (
-    <section className="bg-sand">
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-        <SectionHeading kicker={t.amenities.kicker} title={t.amenities.title} />
+    <section className="relative overflow-hidden">
+      {/* Full-bleed photo band */}
+      <Image
+        src={photo("terrasse")}
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-navy/85" />
+
+      <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+        <SectionHeading light kicker={t.amenities.kicker} title={t.amenities.title} />
 
         <div className="mx-auto mt-10 grid max-w-3xl grid-cols-3 gap-3 sm:mt-12 sm:gap-4">
           {t.amenities.items.map((item, i) => {
@@ -35,12 +47,12 @@ export default function Amenities() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="flex flex-col items-center gap-2 rounded-2xl border border-navy/10 bg-white/80 px-2 py-4 text-center sm:py-5"
+                className="flex flex-col items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-2 py-4 text-center backdrop-blur-md sm:py-5"
               >
-                <span className="text-ocean">
+                <span className="text-lagoon">
                   <Icon />
                 </span>
-                <span className="text-xs font-semibold text-navy sm:text-sm">{item}</span>
+                <span className="text-xs font-semibold text-white sm:text-sm">{item}</span>
               </motion.div>
             );
           })}
