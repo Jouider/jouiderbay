@@ -29,8 +29,9 @@ export const BLOCKED_RANGES: { from: string; to: string }[] = [
  * Every image lives in /public/photos/<slug>.jpg — replace the placeholder
  * files with the real professional photos, keeping the same file names.
  */
-/** Hero carousel slides, in order. Replace these 5 files with your best wide shots. */
-export const HERO_SLUGS = ["hero-1", "hero-2", "hero-3", "hero-4", "hero-5"] as const;
+/** Hero background video (autoplays muted + looped) and its poster frame. */
+export const HERO_VIDEO = "/videos/hero.mp4";
+export const HERO_POSTER = "/photos/hero-1.jpg";
 
 /** Full-bleed mosaic gallery further down the page. */
 export const GALLERY_SLUGS = [

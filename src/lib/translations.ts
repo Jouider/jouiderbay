@@ -18,7 +18,6 @@ export type Dict = {
     sub: string;
     cta: string;
     scroll: string;
-    slides: string[];
   };
   gallery: { kicker: string; title: string; cta: string };
   values: { name: string; desc: string }[];
@@ -75,7 +74,6 @@ export const translations: Record<Lang, Dict> = {
       sub: "Appartement de standing les pieds dans l'eau — piscine, jardins et plage à votre porte.",
       cta: "Réserver vos dates",
       scroll: "Découvrir",
-      slides: ["Vue mer", "La terrasse", "La piscine", "Le salon", "La plage"],
     },
     gallery: {
       kicker: "En images",
@@ -230,7 +228,6 @@ export const translations: Record<Lang, Dict> = {
       sub: "Premium apartment right on the water — pool, gardens and beach at your doorstep.",
       cta: "Book your dates",
       scroll: "Discover",
-      slides: ["Sea view", "The terrace", "The pool", "The living room", "The beach"],
     },
     gallery: {
       kicker: "In pictures",
