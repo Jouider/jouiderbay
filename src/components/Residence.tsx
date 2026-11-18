@@ -10,7 +10,15 @@ export default function Residence() {
   const { t } = useLang();
 
   return (
-    <section id="residence" className="scroll-mt-20 relative overflow-hidden bg-navy">
+    <section
+      id="residence"
+      className="scroll-mt-20 relative overflow-hidden bg-gradient-to-br from-navy via-navy to-[#0b4a6e]"
+    >
+      {/* warm sunset glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-sun/25 blur-3xl"
+      />
       {/* subtle wave texture */}
       <svg
         className="pointer-events-none absolute -top-6 left-0 w-[140%] text-lagoon/10"
@@ -50,7 +58,9 @@ export default function Residence() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-transparent to-transparent" />
                 <figcaption className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="font-[family-name:var(--font-script)] text-2xl text-white">{item.name}</h3>
+                  <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-white">
+                    {item.name}
+                  </h3>
                   <p className="mt-0.5 text-sm text-white/75">{item.desc}</p>
                 </figcaption>
               </div>

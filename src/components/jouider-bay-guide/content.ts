@@ -9,7 +9,7 @@
 import type { GuideContent } from './types';
 
 export const guideContent: GuideContent = {
-  hero: { src: 'photos/hero.jpg', width: 1206, height: 545 },
+  hero: { src: 'photos/hero.jpg', width: 1920, height: 1280 },
   logo: { src: 'logos/jouider-bay-couleur.png', width: 760, height: 520 },
   logoWhite: { src: 'logos/jouider-bay-blanc.png', width: 760, height: 520 },
   welcome: { fr: '', en: '' },

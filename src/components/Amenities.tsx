@@ -47,9 +47,10 @@ export default function Amenities() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="flex flex-col items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-2 py-4 text-center backdrop-blur-md sm:py-5"
+                whileHover={{ y: -4, scale: 1.04, transition: { duration: 0.2 } }}
+                className="group flex flex-col items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-2 py-4 text-center backdrop-blur-md transition-colors hover:border-sun/60 hover:bg-white/15 sm:py-5"
               >
-                <span className="text-lagoon">
+                <span className="text-lagoon transition-colors group-hover:text-sun-soft">
                   <Icon />
                 </span>
                 <span className="text-xs font-semibold text-white sm:text-sm">{item}</span>

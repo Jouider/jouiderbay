@@ -24,7 +24,7 @@ export default function Rooms() {
               transition={{ duration: 0.7, delay: (i % 2) * 0.12 }}
               className={`group ${i % 4 === 0 || i % 4 === 3 ? "md:mt-10" : ""}`}
             >
-              <div className="relative h-64 overflow-hidden rounded-3xl shadow-[0_18px_44px_-18px_rgba(13,43,78,0.35)] sm:h-80">
+              <div className="relative h-64 overflow-hidden rounded-3xl shadow-[0_18px_44px_-18px_rgba(13,43,78,0.35)] transition-all duration-500 group-hover:-translate-y-1.5 group-hover:shadow-[0_26px_50px_-18px_rgba(255,90,78,0.45)] sm:h-80">
                 <Image
                   src={photo(room.slug)}
                   alt={room.name}
@@ -45,7 +45,9 @@ export default function Rooms() {
                 </div>
               </div>
               <figcaption className="px-1 pt-4">
-                <h3 className="font-[family-name:var(--font-script)] text-3xl text-navy">{room.name}</h3>
+                <h3 className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-navy transition-colors duration-300 group-hover:text-coral">
+                  {room.name}
+                </h3>
                 <p className="mt-1 text-sm leading-relaxed text-navy/65 sm:text-base">{room.desc}</p>
               </figcaption>
             </motion.figure>

@@ -1,19 +1,23 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { HERO_POSTER, HERO_VIDEO } from "@/lib/site-config";
+import { HERO_POSTER, HERO_VIDEO, HERO_VIDEO_PORTRAIT } from "@/lib/site-config";
+import Accent from "./Accent";
 import { useLang } from "./LanguageContext";
 
 export default function Hero() {
   const { t } = useLang();
   const videoRef = useRef<HTMLVideoElement>(null);
+  /** True when the browser refuses autoplay (e.g. iPhone Low Power Mode). */
+  const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Visitors who ask for less motion keep the still poster frame.
+    // Visitors who ask for less motion keep the still poster frame
+    // (no source is attached, so nothing is downloaded either).
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       video.removeAttribute("autoplay");
       video.pause();
@@ -22,12 +26,34 @@ export default function Hero() {
 
     // Some mobile browsers reject the initial autoplay attempt; retry once
     // the file is buffered so the hero never sits frozen on the poster.
+    // If autoplay is refused outright, offer a "play" button instead.
     const tryPlay = () => {
-      video.play().catch(() => {});
+      video.play().catch((err: unknown) => {
+        if (err instanceof DOMException && err.name === "NotAllowedError") setBlocked(true);
+      });
     };
-    tryPlay();
+
+    // Pick the cut that fits the screen: 9:16 on portrait screens (phones),
+    // 16:9 otherwise — and switch again if the device is rotated.
+    const portrait = window.matchMedia("(orientation: portrait)");
+    const setSource = () => {
+      const src = portrait.matches ? HERO_VIDEO_PORTRAIT : HERO_VIDEO;
+      if (video.getAttribute("src") !== src) {
+        video.src = src;
+        tryPlay();
+      }
+    };
+
+    const onPlaying = () => setBlocked(false);
+    setSource();
+    portrait.addEventListener("change", setSource);
     video.addEventListener("loadeddata", tryPlay);
-    return () => video.removeEventListener("loadeddata", tryPlay);
+    video.addEventListener("playing", onPlaying);
+    return () => {
+      portrait.removeEventListener("change", setSource);
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("playing", onPlaying);
+    };
   }, []);
 
   return (
@@ -36,11 +62,11 @@ export default function Hero() {
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-navy-deep"
     >
       {/* Full-bleed background video — muted + playsInline are required for
-          autoplay on iOS and Android. */}
+          autoplay on iOS and Android. Its source (16:9 or 9:16 cut) is set
+          on the client in the effect above, according to the screen. */}
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
-        src={HERO_VIDEO}
         poster={HERO_POSTER}
         autoPlay
         muted
@@ -53,6 +79,20 @@ export default function Hero() {
 
       {/* Readability veil */}
       <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/40 to-navy-deep/45" />
+
+      {/* Fallback when the device refuses autoplay */}
+      {blocked ? (
+        <button
+          type="button"
+          onClick={() => videoRef.current?.play().catch(() => {})}
+          className="absolute right-5 top-24 z-20 inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/25 sm:right-8 sm:top-28"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10.4-6.5a1 1 0 0 0 0-1.7L9.53 4.65A1 1 0 0 0 8 5.5Z" />
+          </svg>
+          {t.hero.play}
+        </button>
+      ) : null}
 
       {/* ---- Content ---- */}
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-24 pt-36 sm:px-8 sm:pb-28">
@@ -69,16 +109,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.25 }}
-          className="mt-4 max-w-3xl font-[family-name:var(--font-script)] text-5xl leading-[1.1] text-white sm:text-7xl"
+          className="mt-4 max-w-3xl font-[family-name:var(--font-display)] text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-white [text-shadow:0_2px_18px_rgba(8,28,53,0.45)] sm:text-6xl lg:text-7xl"
         >
-          {t.hero.tagline}
+          <Accent text={t.hero.tagline} className="font-normal italic text-sun-soft" />
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45 }}
-          className="mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
+          className="mt-5 max-w-xl text-base leading-relaxed text-white/90 [text-shadow:0_1px_12px_rgba(8,28,53,0.55)] sm:text-lg"
         >
           {t.hero.sub}
         </motion.p>
@@ -91,7 +131,7 @@ export default function Hero() {
         >
           <a
             href="#reservation"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-sun px-8 py-4 text-base font-bold text-white shadow-xl shadow-sun/30 transition-transform hover:scale-[1.04]"
+            className="btn-sunset inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white shadow-xl shadow-coral/35 transition-transform hover:scale-[1.04]"
           >
             {t.hero.cta}
             <ArrowIcon />

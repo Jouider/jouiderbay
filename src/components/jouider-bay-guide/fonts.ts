@@ -1,18 +1,19 @@
-import { Lora, Poppins } from 'next/font/google';
+import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google';
 
-/** Display serif (italic titles). Exposed to the CSS as --jb-font-display. */
-export const displayFont = Lora({
+/**
+ * Same type pairing as the rest of the site (see app/layout.tsx).
+ * Display serif (italic titles). Exposed to the CSS as --jb-font-display.
+ */
+export const displayFont = Fraunces({
   subsets: ['latin'],
-  weight: ['500', '600'],
   style: ['normal', 'italic'],
   display: 'swap',
   variable: '--jb-font-display',
 });
 
 /** Interface sans-serif. Exposed to the CSS as --jb-font-ui. */
-export const uiFont = Poppins({
+export const uiFont = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
   display: 'swap',
   variable: '--jb-font-ui',
 });

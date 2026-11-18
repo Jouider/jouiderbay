@@ -18,9 +18,11 @@ export default function Navbar() {
 
   const next = LANGS[(LANGS.findIndex((l) => l.code === lang) + 1) % LANGS.length];
 
+  // `wideOnly` links are shown from the lg breakpoint (not enough room at md).
   const links = [
     { href: "#appartement", label: t.nav.rooms },
     { href: "#residence", label: t.nav.residence },
+    { href: "#videos", label: t.nav.videos, wideOnly: true },
     { href: "#reservation", label: t.nav.rates },
     { href: "#contact", label: t.nav.contact },
   ];
@@ -64,6 +66,8 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               className={`text-sm font-semibold tracking-wide transition-colors ${
+                l.wideOnly ? "hidden lg:inline" : ""
+              } ${
                 scrolled
                   ? "text-navy/75 hover:text-navy"
                   : "text-white/85 hover:text-white drop-shadow-[0_1px_6px_rgba(8,28,53,0.5)]"
@@ -89,7 +93,7 @@ export default function Navbar() {
           </button>
           <a
             href="#reservation"
-            className="hidden rounded-full bg-sun px-5 py-2 text-sm font-bold text-white shadow-lg shadow-sun/30 transition-transform hover:scale-[1.05] sm:inline-flex"
+            className="btn-sunset hidden rounded-full px-5 py-2 text-sm font-bold text-white shadow-lg shadow-coral/30 transition-transform hover:scale-[1.05] sm:inline-flex"
           >
             {t.nav.book}
           </a>

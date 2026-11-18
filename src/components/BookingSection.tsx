@@ -82,7 +82,7 @@ export default function BookingSection() {
             className="flex flex-col rounded-3xl bg-navy p-6 text-white shadow-[0_24px_60px_-24px_rgba(13,43,78,0.5)] sm:p-8"
           >
             <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-extrabold tracking-tight text-sun-soft sm:text-[2.6rem]">
+              <span className="font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-sun-soft">
                 {formatPrice(PRICING.nightly)}
               </span>
               <span className="text-sm text-white/70">{t.booking.perNight}</span>
