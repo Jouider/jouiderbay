@@ -11,9 +11,61 @@
   --color-sand: #fdf4e7;
   --color-sand-warm: #f9e9d2;
   --color-cream: #fffdf9;
+  /* Sunset accent — pairs with `sun` for the warm gradients */
+  --color-coral: #ff5a4e;
 
   --font-sans: var(--font-sans);
-  --font-script: var(--font-script);
+  --font-display: var(--font-display);
+}
+
+/* Titles: balanced line breaks (no lonely last word) */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* ---------- Peps: warm sunset accents ---------- */
+
+/* Gradient text (kickers, highlights) */
+.text-sunset {
+  background-image: linear-gradient(90deg, var(--color-sun), var(--color-coral));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Gradient call-to-action buttons with a light sweep on hover */
+.btn-sunset {
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(100deg, var(--color-sun) 0%, #ff7a2f 45%, var(--color-coral) 100%);
+}
+.btn-sunset::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.8s ease;
+}
+.btn-sunset:hover::after {
+  transform: translateX(120%);
+}
+
+/* Soft pulsing halo (WhatsApp button) */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 2.2s ease-out infinite;
 }
 
 html {

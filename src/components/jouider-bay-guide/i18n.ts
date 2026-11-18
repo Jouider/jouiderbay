@@ -53,7 +53,7 @@ export const UI: Record<Lang, UiStrings> = {
   fr: {
     eyebrow: 'Résidence Casabay · Sidi Rahal',
     eyebrowLogo: 'Résidence Casabay · Guide de séjour',
-    lede: `Le guide de votre séjour${NBSP}: l’arrivée, chaque équipement en vidéo et le départ.`,
+    lede: `Bienvenue chez vous${NBSP}! Votre arrivée, chaque équipement en vidéo et le départ${NBSP}: tout est ici.`,
     jumpArrival: 'Arrivée',
     jumpApartment: 'L’appartement',
     jumpDeparture: 'Départ',
@@ -97,7 +97,7 @@ export const UI: Record<Lang, UiStrings> = {
   en: {
     eyebrow: 'Casabay residence · Sidi Rahal',
     eyebrowLogo: 'Casabay residence · Stay guide',
-    lede: 'Your stay guide: getting here, every appliance on video, and check-out.',
+    lede: 'Welcome home! Getting here, every appliance on video and check-out: it’s all here.',
     jumpArrival: 'Arrival',
     jumpApartment: 'The apartment',
     jumpDeparture: 'Check-out',

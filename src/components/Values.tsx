@@ -4,12 +4,19 @@ import { motion } from "motion/react";
 import { useLang } from "./LanguageContext";
 
 const ICONS = [WaveIcon, SunIcon, HeartIcon, LeafIcon];
+/** One cheerful colour per value, same order as ICONS. */
+const TINTS = [
+  "bg-ocean/15 text-ocean",
+  "bg-sun/15 text-sun",
+  "bg-coral/15 text-coral",
+  "bg-lagoon/20 text-ocean",
+];
 
 export default function Values() {
   const { t } = useLang();
 
   return (
-    <section className="bg-cream">
+    <section className="bg-gradient-to-b from-cream to-sand">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-8 px-5 py-14 sm:px-8 sm:py-16 md:grid-cols-4">
         {t.values.map((v, i) => {
           const Icon = ICONS[i % ICONS.length];
@@ -20,11 +27,15 @@ export default function Values() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="flex flex-col items-center text-center"
+              className="group flex flex-col items-center text-center"
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-lagoon/15 text-ocean">
+              <motion.span
+                whileHover={{ rotate: [0, -12, 12, 0], scale: 1.15 }}
+                transition={{ duration: 0.5 }}
+                className={`flex h-14 w-14 items-center justify-center rounded-2xl ${TINTS[i % TINTS.length]}`}
+              >
                 <Icon />
-              </span>
+              </motion.span>
               <h3 className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-navy">{v.name}</h3>
               <p className="mt-1 text-sm text-navy/60">{v.desc}</p>
             </motion.div>

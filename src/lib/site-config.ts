@@ -29,8 +29,11 @@ export const BLOCKED_RANGES: { from: string; to: string }[] = [
  * Every image lives in /public/photos/<slug>.jpg — replace the placeholder
  * files with the real professional photos, keeping the same file names.
  */
-/** Hero background video (autoplays muted + looped) and its poster frame. */
+/** Hero background video (autoplays muted + looped) and its poster frame.
+ *  Two cuts of the same slow-motion montage: 16:9 for landscape screens
+ *  (computers, tablets turned sideways) and 9:16 for portrait screens (phones). */
 export const HERO_VIDEO = "/videos/hero.mp4";
+export const HERO_VIDEO_PORTRAIT = "/videos/hero-portrait.mp4";
 export const HERO_POSTER = "/photos/hero-1.jpg";
 
 /** Full-bleed mosaic gallery further down the page. */
@@ -41,6 +44,12 @@ export const GALLERY_SLUGS = [
   "plage",
   "chambre-principale",
   "jardins",
+  "accueil",
+  "piscine-jour",
+  "cafe-plage",
+  "terrain-sport",
+  "aire-de-jeux",
+  "acces-plage",
 ] as const;
 
 export const ROOM_SLUGS = [
@@ -55,6 +64,28 @@ export const ROOM_SLUGS = [
 ] as const;
 
 export const RESIDENCE_SLUGS = ["piscine", "jardins", "entree", "plage"] as const;
+
+/* ---------- Videos section ("En vidéo") ----------
+ * CLIPS: our own short vertical videos (public/videos/<slug>.mp4, muted loop)
+ *        with their poster frame in public/photos/<slug>.jpg.
+ * INSTAGRAM_REELS: reel IDs from instagram.com/jouiderbay/reel/<ID>/ — shown
+ *        with Instagram's official embed, loaded only when the visitor taps
+ *        (no Meta cookies before that). Add / remove IDs here.
+ */
+export const VIDEO_CLIP_SLUGS = ["panorama-jardins", "vue-piscine-balcon"] as const;
+export const video = (slug: string) => `/videos/${slug}.mp4`;
+
+export const INSTAGRAM_REELS = [
+  "Df0ZaQkg_vd",
+  "Dfs3R0ggAbA",
+  "DfqEkYHAo_c",
+  "Dfm6dd5AM0P",
+  "DflAAc-ADwL",
+  "DfgA8Ogo-uS",
+  "Dff8wlJIGVn",
+  "DfbbMb2gqaL",
+  "DfTTGLEows5",
+] as const;
 
 export type RoomSlug = (typeof ROOM_SLUGS)[number];
 export type ResidenceSlug = (typeof RESIDENCE_SLUGS)[number];
