@@ -23,6 +23,7 @@ export default function Navbar() {
     { href: "#appartement", label: t.nav.rooms },
     { href: "#residence", label: t.nav.residence },
     { href: "#videos", label: t.nav.videos, wideOnly: true },
+    { href: "/guide", label: t.nav.guide, wideOnly: true },
     { href: "#reservation", label: t.nav.rates },
     { href: "#contact", label: t.nav.contact },
   ];

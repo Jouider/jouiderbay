@@ -19,6 +19,7 @@ export type Dict = {
     rooms: string;
     residence: string;
     videos: string;
+    guide: string;
     rates: string;
     contact: string;
     book: string;
@@ -80,7 +81,14 @@ export type Dict = {
     distances: { label: string; value: string }[];
     maps: string;
   };
-  footer: { tagline: string; contact: string; follow: string; rights: string };
+  footer: {
+    tagline: string;
+    contact: string;
+    follow: string;
+    rights: string;
+    guideTitle: string;
+    guideLink: string;
+  };
 };
 
 export const translations: Record<Lang, Dict> = {
@@ -89,6 +97,7 @@ export const translations: Record<Lang, Dict> = {
       rooms: "L'appartement",
       residence: "La résidence",
       videos: "Vidéos",
+      guide: "Guide",
       rates: "Tarifs",
       contact: "Contact",
       book: "Réserver",
@@ -250,6 +259,8 @@ export const translations: Record<Lang, Dict> = {
       contact: "Contact",
       follow: "Suivez-nous",
       rights: "Tous droits réservés.",
+      guideTitle: "Vous séjournez chez nous ?",
+      guideLink: "Guide de séjour",
     },
   },
   en: {
@@ -257,6 +268,7 @@ export const translations: Record<Lang, Dict> = {
       rooms: "The apartment",
       residence: "The residence",
       videos: "Videos",
+      guide: "Guide",
       rates: "Rates",
       contact: "Contact",
       book: "Book now",
@@ -418,6 +430,8 @@ export const translations: Record<Lang, Dict> = {
       contact: "Contact",
       follow: "Follow us",
       rights: "All rights reserved.",
+      guideTitle: "Staying with us?",
+      guideLink: "Stay guide",
     },
   },
 };
