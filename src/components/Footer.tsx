@@ -54,6 +54,19 @@ export default function Footer() {
 
           <div>
             <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-sun-soft">
+              {t.footer.guideTitle}
+            </h3>
+            <a
+              href="/guide"
+              className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10"
+            >
+              <BookIcon />
+              {t.footer.guideLink}
+            </a>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-sun-soft">
               {t.footer.follow}
             </h3>
             <a
@@ -73,6 +86,15 @@ export default function Footer() {
         </p>
       </div>
     </footer>
+  );
+}
+
+function BookIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5A2.5 2.5 0 0 1 4 20.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    </svg>
   );
 }
 
